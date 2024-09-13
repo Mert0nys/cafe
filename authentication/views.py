@@ -28,7 +28,7 @@ class UserRegistrationView(generics.CreateAPIView):
         try:
             send_mail( 
                 'Активация вашего аккаунта', 
-                f'Активируйте аккаунт перейдя по ссылке: https://mert0nys-cafe-e5e5.twc1.net/activate/{token}/', 
+                f'Активируйте аккаунт перейдя по ссылке: https://mert0nys-cafe-c2cd.twc1.net/activate/{token}/', 
                 'from@example.com', 
                 [user.email], 
                 fail_silently=False, 
@@ -64,7 +64,7 @@ class ActivateView(APIView):
         activation.user.save()  
         activation.save() 
         
-        return HttpResponseRedirect('https://mert0nys-cafe-e5e5.twc1.net')  # Замените на ваш URL React приложения 
+        return HttpResponseRedirect('https://mert0nys-cafe-c2cd.twc1.net')  # Замените на ваш URL React приложения 
 
 User = get_user_model() 
 
