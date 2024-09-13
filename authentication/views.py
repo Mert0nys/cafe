@@ -88,7 +88,7 @@ class LogoutView(APIView):
 
 class HomeView(View): 
     template_name = 'index.html'
-    def get(self, request): 
+    def post(self, request): 
         return render(request, self.template_name) 
 
 class ReservationViewSet(viewsets.ModelViewSet): 

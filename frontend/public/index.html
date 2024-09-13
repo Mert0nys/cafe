@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% csrf_token %}
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
@@ -12,11 +13,6 @@
  
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Кафе Italy</title>
-    <form method="post">
-      {% csrf_token %}
-      <!-- поля для ввода логина и пароля -->
-      <input type="submit" value="Войти">
-  </form>
   </head>
   <body>
     <div id="root"></div>
