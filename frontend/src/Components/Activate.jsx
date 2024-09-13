@@ -8,7 +8,7 @@ const Activate = () => {
     useEffect(() => {
         const activateAccount = async () => {
             try {
-                await axios.get(`http://localhost:8000/activate/{token}/`);
+                await axios.get(`https://mert0nys-cafe-c2cd.twc1.net/activate/{token}/`);
                 alert('Account activated successfully!');
             } catch (error) {
                 alert('Activation failed!');

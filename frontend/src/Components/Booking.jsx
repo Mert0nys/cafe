@@ -13,7 +13,7 @@ const BookingModal = ({ showBron, handleCloseBron }) => {
       setError('');
   
       try {
-        const response = await axios.post('http://localhost:8000/api/bron/reservations/', {
+        const response = await axios.post('https://mert0nys-cafe-c2cd.twc1.net/api/bron/reservations/', {
           name,
           phone,
         });

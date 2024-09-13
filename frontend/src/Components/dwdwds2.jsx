@@ -16,7 +16,7 @@ const Logout = () => {
         };
 
         const { data } = await axios.post(
-          'http://localhost:8000/logout/',
+          'https://mert0nys-cafe-c2cd.twc1.net/api/logout/',
           { refresh_token: localStorage.getItem('refresh_token') },
           config
         );

@@ -17,7 +17,7 @@ const HomeL = () => {
                         withCredentials: true
                     };
                     const {data} = await axios.get (
-                        'http://localhost:8000/home/',
+                        'https://mert0nys-cafe-c2cd.twc1.net/home/',
                         config
                     );
                     setMessage(data.message)
