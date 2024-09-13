@@ -31,7 +31,7 @@ const Login = () => {
     };  
 
     try {  
-      const { data } = await axios.post('https://mert0nys-cafe-e5e5.twc1.net/api/login/', user, config);  
+      const { data } = await axios.post('https://mert0nys-cafe-c2cd.twc1.net/api/login/', user, config);  
       localStorage.clear(); // Очистка локального хранилища 
       console.log(data.access);  
       localStorage.setItem('access_token', data.access);  

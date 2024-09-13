@@ -29,7 +29,7 @@ const Register = () => {
   const registerUser = async () => { 
       const csrfToken = getCookie('csrftoken'); 
       try { 
-          const response = await axios.post('https://mert0nys-cafe-e5e5.twc1.net/api/register/', { 
+          const response = await axios.post('https://mert0nys-cafe-c2cd.twc1.net/api/register/', { 
               email, 
               username, 
               password, 
