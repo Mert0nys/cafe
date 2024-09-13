@@ -1,0 +1,19 @@
+/* LoadingComponent.css */
+.loader {
+    width: 100px; /* Увеличьте размер спиннера */
+    height: 100px; /* Увеличьте размер спиннера */
+  }
+
+  
+.message-load {
+    font-size: 35px;
+    opacity: 0; /* Начальное состояние */
+    animation: fadeIn 0.5s forwards; /* Анимация появления */
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1; /* Конечное состояние */
+    }
+  }
+  

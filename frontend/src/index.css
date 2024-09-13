@@ -1,0 +1,202 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.button-bron {
+	background-color:#4a45c7;
+	border-radius:28px;
+	border:1px solid #1009e6;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:25px;
+	font-weight:bold;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3710d1;
+}
+.button-bron:hover{
+  background-color:#230fd9;
+}
+
+@media (max-width: 689px) {
+.jumimage {
+    height: 300px;
+  }
+}
+@media (max-width: 463px) {
+.jumimage {
+    height: 200px;
+  }
+}
+@media (max-width: 517px) {
+  .lead-h1 {
+      font-size: 1rem; /* Размер заголовка при ширине экрана 517px и меньше */
+  }
+}
+
+
+@media (max-width: 767px) {
+  .card-margin-hot {
+
+      margin-left: 3rem; /* Установите нужный вам отступ */
+  }
+}
+
+
+@media (max-width: 575px) {
+  .card-hot, .card-deserts, .card-dreenk {
+      max-width: 100%; /* или другое значение */
+      width: 100px;
+      margin: 0 auto; /* центрирование */
+      
+  }
+  .card-margin-hot {
+    margin-left: 0rem; /* Установите нужный вам отступ */
+}
+
+}
+
+
+.bron-button-container {
+  display: flex;
+  justify-content: center;  /* Центрирует кнопку по горизонтали */
+  margin-right: auto;      /* Отступ справа от кнопки бронирования */
+}
+ 
+.auth-buttons {
+  display: flex;
+  justify-content: flex-end; /* Центрирует кнопки входа и регистрации по горизонтали */
+}
+ 
+.carousel-item {
+  height: 500px; /* Новая высота для экранов меньше 796px */
+}
+
+.price {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+@media (max-width: 796px) {
+  .carousel-item {
+      height: 20rem; /* Новая высота для экранов меньше 796px */
+  }
+}
+
+@media (max-width: 643px) {
+  .carousel-item {
+      height: 19rem; /* Новая высота для экранов меньше 796px */
+  }
+}
+
+@media (max-width: 533px) {
+  .carousel-item {
+      height: 14rem; 
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 347px) {
+  .carousel-item {
+      height: 10.5rem; /* Новая высота для экранов меньше 796px */
+  }
+}
+
+@media (min-width: 347px) and (max-width: 360px) {
+  .carousel-item {
+      height: 11rem; /* Новая высота для экранов меньше 796px */
+  }
+}
+
+@media (min-width: 361px) and (max-width: 400px) {
+  .carousel-item {
+      height: 12rem; /* Новая высота для экранов меньше 796px */
+  }
+}
+
+@media (min-width: 797px) and (max-width: 1043px) {
+  .carousel-item {
+      height: 22rem;
+  }
+
+  .card-deserts, .card-hot, .card-dreenk {
+    width: 16rem;
+  }
+}
+
+.card-deserts {
+  width: 16rem;
+}
+
+.card-hot {
+  width: 17.2rem;
+}
+
+.card-dreenk {
+  width: 16.2rem;
+}
+
+@media(max-width: 991px) {
+  .login {
+    top: -20rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .card-deserts, .card-hot, .card-dreenk {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 343px) {
+  .card-deserts, .card-hot, .card-dreenk {
+    width: 9rem;
+  }
+}
+
+footer {
+  margin-top: 0 auto; /* Это позволит футеру оставаться внизу */
+}
+
+
+.gradient-custom-3 {
+  /* fallback for old browsers */
+  background: #84fab0;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+}
+
+.gradient-custom-4 {
+  /* fallback for old browsers */
+  background: #84fab0;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+
+
+ 
