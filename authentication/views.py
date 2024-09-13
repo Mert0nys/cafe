@@ -14,6 +14,7 @@ from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from rest_framework.decorators import api_view
+from django.shortcuts import render
 from .models import Product,User, Reservation, Category, Activation
 from .serializers import ProductSerializer, LoginSerializer, ReservationSerializer, UserRegistrationSerializer, CategorySerializer
 from django.http import JsonResponse
@@ -88,7 +89,9 @@ class LogoutView(APIView):
             return Response({"error": "Logout failed."}, status=400)
 
 class HomePageView(TemplateView): 
-    template_name = 'index.html'  # Убедитесь, что файл index.html существует в вашем шаблоне
+    template_name = 'index.html'
+    def get(self, request):
+        return render(request, self.template_name) 
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
