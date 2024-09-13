@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% csrf_token %}
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
@@ -12,8 +11,10 @@
     />
  
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    {% csrf_token %}
     <title>Кафе Italy</title>
+    <form method="post">
+      {% csrf_token %}
+  </form>
   </head>
   <body>
     <div id="root"></div>
