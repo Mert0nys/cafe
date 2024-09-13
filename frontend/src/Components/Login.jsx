@@ -1,110 +1,100 @@
-import React, { useState } from 'react'; 
-import axios from 'axios'; 
-import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap'; 
-import { Link, useHistory } from 'react-router-dom'; 
+import React, { useState } from 'react';  
+import axios from 'axios';  
+import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';  
+import { Link, useHistory } from 'react-router-dom';
+import FooterTwo from './FooterTwo'
+const Login = () => {  
+  const [username, setName] = useState('');  
+  const [password, setPassword] = useState('');  
+  const history = useHistory();  
 
-const Login = () => { 
-  const [username, setName] = useState(''); 
-  const [password, setPassword] = useState(''); 
-  const history = useHistory(); 
+  const handleRedirect = () => {  
+    history.push('/'); 
+    setTimeout(() => { 
+      window.location.reload(); // Обновление страницы через 1 секунду 
+    }, 800); 
+  };  
 
-  const handleRedirect = () => { 
-    history.push('/');
-    setTimeout(() => {
-      window.location.reload(); // Обновление страницы через 1 секунду
-    }, 800);
-  }; 
+  const submit = async e => {  
+    e.preventDefault();  
 
-  const submit = async e => { 
-    e.preventDefault(); 
+    const user = {  
+      username,  
+      password,  
+    };  
 
-    const user = { 
-      username, 
-      password, 
-    }; 
+    const config = {  
+      headers: {  
+        'Content-Type': 'application/json',  
+      },  
+      withCredentials: true,  
+    };  
 
-    const config = { 
-      headers: { 
-        'Content-Type': 'application/json', 
-      }, 
-      withCredentials: true, 
-    }; 
+    try {  
+      const { data } = await axios.post('https://mert0nys-cafe-e5e5.twc1.net/api/login/', user, config);  
+      localStorage.clear(); // Очистка локального хранилища 
+      console.log(data.access);  
+      localStorage.setItem('access_token', data.access);  
+      localStorage.setItem('refresh_token', data.refresh);  
 
-    try { 
-      const { data } = await axios.post('https://mert0nys-cafe-c2cd.twc1.net/api/login/', user, config); 
-      localStorage.clear(); // Очистка локального хранилища
-      console.log(data.access); 
-      localStorage.setItem('access_token', data.access); 
-      localStorage.setItem('refresh_token', data.refresh); 
+      // Установка заголовка авторизации для всех последующих запросов
+      axios.defaults.headers.common['Authorization'] = `Bearer${data.access};`  
 
-      // Исправлено: добавлены кавычки для интерполяции строки
-      axios.defaults.headers.common['Authorization'] =`Bearer ${data.access}`; 
+      handleRedirect();  
+    } catch (error) {  
+      console.error('Ошибка при входе:', error);  
+      alert('Неправильный логин или пароль'); // Сообщение об ошибке 
+    }  
+  };  
 
-      handleRedirect(); 
-    } catch (error) { 
-      console.error('Ошибка при входе:', error); 
-      alert('Неправильный логин или пароль'); // Сообщение об ошибке
-    } 
-  }; 
+  return (
+    <>
+    <Container>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <div style={{ marginTop: '2rem',  marginBottom: '2rem'}}>
+          <Card>
+            <Card.Body>
+            <h2 className="fw-bold text-uppercase mb-2">Вход</h2>
+              <Form onSubmit={submit}>
+                <Form.Group controlId="formBasicUsername">
+                  <Form.Label>Имя пользователя</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    placeholder="Введите имя пользователя" 
+                    value={username} 
+                    onChange={(e) => setName(e.target.value)} 
+                    required 
+                  />
+                </Form.Group>
 
-  return ( 
-    <Container> 
-      <Form onSubmit={submit}> 
-        <Row className="vh-100 d-flex justify-content-center align-items-center"> 
-          <Col md={8} lg={6} xs={12}> 
-            <Card className="shadow"> 
-              <Card.Body> 
-                <div className="mb-3 mt-4"> 
-                  <h2 className="fw-bold text-uppercase mb-2">Войти</h2> 
-                  <p className="mb-5">Кафе Italy</p> 
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Пароль</Form.Label>
+                  <Form.Control 
+                    type="password" 
+                    placeholder="Введите пароль" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
+                  />
+                </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicEmail"> 
-                    <Form.Label className="text-center">Ваше имя</Form.Label> 
-                    <Form.Control 
-                      placeholder="Имя" 
-                      name='username' 
-                      type='text' 
-                      value={username} 
-                      required 
-                      onChange={e => setName(e.target.value)} 
-                    /> 
-                  </Form.Group> 
-
-                  <Form.Group className="mb-3" controlId="formBasicPassword"> 
-                    <Form.Label className="text-center">Ваш пароль</Form.Label> 
-                    <Form.Control 
-                      name='password' 
-                      placeholder="Пароль" 
-                      type="password" 
-                      value={password} 
-                      required 
-                      onChange={e => setPassword(e.target.value)} 
-                    /> 
-                  </Form.Group> 
-
-                  <div className="mb-3"> 
-                    <p className="small"> 
-                      <a className="text-primary" href="#!">Забыли пароль?</a> 
-                    </p> 
-                  </div> 
-
-                  <div className="d-grid"> 
-                    <Button variant="primary" type="submit">Войти</Button> 
-                  </div> 
-
-                  <div className="mt-3"> 
-                    <p className="mb-0 text-center">У вас нет аккаунта?{' '} 
-                      <Link to="/register" className="text-primary fw-bold">Зарегистрироваться</Link>
-                    </p> 
-                  </div> 
-                </div> 
-              </Card.Body> 
-            </Card> 
-          </Col> 
-        </Row> 
-      </Form> 
-    </Container> 
-  ); 
-}; 
+                <Button style={{marginTop: '10px'}} variant="primary" type="submit" block>
+                  Войти
+                </Button>
+              </Form>
+              <p className="mt-3 text-center">
+                Нет аккаунта? <Link to="/register">Зарегистрируйтесь</Link>
+              </p>
+            </Card.Body>
+          </Card>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+    <FooterTwo/>
+    </>
+  );  
+};  
 
 export default Login;
