@@ -61,7 +61,7 @@ class ActivateView(APIView):
             activation.save()
             
             # Редирект на страницу подтверждения
-            return HttpResponseRedirect('hhttps://mert0nys-cafe-c2cd.twc1.net/')  # Замените на ваш URL React приложения
+            return HttpResponseRedirect('https://mert0nys-cafe-c2cd.twc1.net/')  # Замените на ваш URL React приложения
             
         except Activation.DoesNotExist: 
             return Response({"error": "Invalid token!"}, status=status.HTTP_400_BAD_REQUEST)

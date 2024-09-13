@@ -101,8 +101,12 @@ WSGI_APPLICATION = 'cafe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'default_db',
+        'USER': 'gen_user',
+        'PASSWORD': 'Gamemode',
+        'HOST': '94.241.140.211',  # Или IP-адрес вашего MySQL сервера
+        'PORT': '3306',       # Порт MySQL
     }
 }
 
