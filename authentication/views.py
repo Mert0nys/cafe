@@ -1,5 +1,5 @@
 from rest_framework.views import APIView 
-from rest_framework.response import Response 
+from rest_framework.response import Response, render
 from rest_framework.permissions import IsAuthenticated 
 from rest_framework import status 
 from django.views.generic import TemplateView 
@@ -88,7 +88,11 @@ class LogoutView(APIView):
             return Response({"error": "Logout failed."}, status=400)
 
 class HomePageView(TemplateView): 
-    template_name = 'index.html'  # Убедитесь, что файл index.html существует в вашем шаблоне
+   def my_view(request):
+    if request.method == "POST":
+        # Обработка данных формы
+        pass
+    return render(request, 'index.html')
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()

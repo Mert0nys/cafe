@@ -75,6 +75,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://mert0nys-cafe-e5e5.twc1.net',
+]
+
+
 ROOT_URLCONF = 'cafe.urls'
 
 TEMPLATES = [
