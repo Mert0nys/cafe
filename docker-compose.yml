@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend  # Путь к вашему проекту Django
+    volumes:
+      - ./backend:/cafe  # Подключаем локальную папку
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend  # Путь к вашему проекту React
+    volumes:
+      - ./frontend:/frontend  # Подключаем локальную папку
+    ports:
+      - "8000:8000"
