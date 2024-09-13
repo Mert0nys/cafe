@@ -10,7 +10,7 @@ export const Menu = () => {
     useEffect(() => {  
         const fetchProducts = async () => {  
             try {  
-                const response = await axios.get('http://localhost:8000/menu/products/');  
+                const response = await axios.get('https://mert0nys-cafe-c2cd.twc1.net/menu/products/');  
                 setProducts(response.data);  
             } catch (error) {  
                 console.error('Error fetching products:', error);  
