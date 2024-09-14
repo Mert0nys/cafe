@@ -21,12 +21,12 @@ function App() {
     <NaviBar/>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/menu" component={Menu} />
-      <Route path="/about" component={About} />
-      <Route path="/login" component={Login} />
-      <Route path="/logout" component={Logout} />
-      <Route path="/register" component={Register} />
-      <Route path="/loading" component={LoadingComponent} />
+      <Route path="/menu/" component={Menu} />
+      <Route path="/about/" component={About} />
+      <Route path="/login/" component={Login} />
+      <Route path="/logout/" component={Logout} />
+      <Route path="/register/" component={Register} />
+      <Route path="/loading/" component={LoadingComponent} />
     </Switch>
     </Router>
     

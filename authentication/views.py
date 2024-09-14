@@ -17,24 +17,32 @@ import logging
 # Настройка логирования
 logger = logging.getLogger(__name__)
 
-class UserRegistrationView(generics.CreateAPIView): 
-    serializer_class = UserRegistrationSerializer 
+class UserRegistrationView(generics.CreateAPIView):
+    serializer_class = UserRegistrationSerializer
 
-    def perform_create(self, serializer): 
-        user = serializer.save() 
-        token = secrets.token_urlsafe(32) 
-        Activation.objects.create(user=user, token=token) 
-        
+    def perform_create(self, serializer):
+        user = serializer.save()
+        token = secrets.token_urlsafe(32)
+        Activation.objects.create(user=user, token=token)
+
         try:
-            send_mail( 
-                'Активация вашего аккаунта', 
-                f'Активируйте аккаунт перейдя по ссылке: https://mert0nys-cafe-c2cd.twc1.net/activate/{token}/', 
-                'from@example.com', 
-                [user.email], 
-                fail_silently=False, 
+            send_mail(
+                'Активация вашего аккаунта',
+                f'Активируйте аккаунт перейдя по ссылке: https://mert0nys-cafe-c2cd.twc1.net/activate/{token}/',
+                'from@example.com',
+                [user.email],
+                fail_silently=False,
             )
         except Exception as e:
             logger.error(f"Error sending activation email: {e}")
+
+    def get(self, request):
+        try:
+            Register = User.objects.all().values('id', 'name', 'url')  # Получите необходимые поля
+            return Response(Register)
+        except Exception as e:
+            logger.error(f"Error retrieving menu items: {e}")
+            return Response({'error': 'Ошибка при получении данных'}, status=500)
 
 class LoginView(APIView): 
     serializer_class = LoginSerializer 
@@ -52,6 +60,12 @@ class LoginView(APIView):
             'access': str(refresh.access_token), 
         }) 
 
+class MenuView(APIView):
+    serializer_class = ProductSerializer
+    menu = 'index.html'
+    def get(self, request):
+        return render(request, self.menu)
+
 class ActivateView(APIView):  
     def get(self, request, token):  
         activation = get_object_or_404(Activation, token=token)
@@ -67,13 +81,7 @@ class ActivateView(APIView):
         return HttpResponseRedirect('https://mert0nys-cafe-c2cd.twc1.net')  # Замените на ваш URL React приложения 
 
 User = get_user_model() 
-
-class HomeViews(APIView):  
-    permission_classes = (IsAuthenticated,)  
-
-    def get(self, request):  
-        content = {"message": f"welcome to page {request.user}"} 
-        return Response(content)  
+ 
 
 class LogoutView(APIView): 
     permission_classes = [IsAuthenticated] 

@@ -11,7 +11,7 @@ const About = () => (
                 <a href="/about" className="text-white">О нас</a>
               </li>
               <li className="list-inline-item">
-                <a href="/menu" className="text-white">Меню</a>
+                <a href="/menu/" className="text-white">Меню</a>
               </li>
               <li className="list-inline-item">
                 <p className="text-white">89275508377</p>
