@@ -1,76 +1,67 @@
-import React, { useState, useEffect } from 'react'; 
-import { Card, Col, Row, Button, Modal } from 'react-bootstrap'; 
+// src/Menu.js 
+import React, { useEffect, useState } from 'react'; 
 import axios from 'axios'; 
 
-export const Menu = () => {  
-    const [products, setProducts] = useState([]);  
-    const [showModal, setShowModal] = useState(false);  
-    const [currentDish, setCurrentDish] = useState({ title: '', text: '' });  
+export const Menu = () => { 
+    const [menuItems, setMenuItems] = useState([]); 
+    const [newCategory, setNewCategory] = useState({ name: '', description: '' });
 
-    useEffect(() => {  
-        const fetchProducts = async () => {  
-            try {  
-                const response = await axios.get('https://mert0nys-cafe-c2cd.twc1.net/menu/products/');  
-                setProducts(response.data);  
-            } catch (error) {  
-                console.error('Error fetching products:', error);  
-            }  
-        };  
+    const fetchMenuItems = async () => { 
+        try { 
+            const response = await axios.get('http://127.0.0.1:8000/menu/products/'); 
+            setMenuItems(response.data); 
+        } catch (error) { 
+            console.error('Error fetching menu items:', error); 
+        } 
+    }; 
 
-        fetchProducts();  
-    }, []);  
+    const addCategory = async (e) => {
+        e.preventDefault(); // предотвращает перезагрузку страницы
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/menu/categories/', newCategory);
+            setMenuItems([...menuItems, response.data]); // обновляем состояние меню
+            setNewCategory({ name: '', description: '' }); // сбрасываем форму
+        } catch (error) {
+            console.error('Error adding category:', error);
+        }
+    };
 
-    const handleShow = (title, text) => {  
-        setCurrentDish({ title, text });  
-        setShowModal(true);  
-    };  
+    useEffect(() => { 
+        fetchMenuItems(); 
+    }, []); 
 
-    const handleClose = () => setShowModal(false);  
+    return ( 
+        <div> 
+            <h1>Menu</h1> 
+            <ul> 
+                {menuItems.map(item => ( 
+                    <li key={item.id}> 
+                        <strong>{item.name}</strong>: {item.description} - ${item.price} 
+                    </li> 
+                ))} 
+            </ul> 
+            <button onClick={fetchMenuItems}>Reload Menu</button> 
 
-    // Предположим, что у вас есть категории "Десерты" и "Аппетайзеры" 
-    const categories = ['Аппетайзеры', 'Пицца', 'Десерты', 'Напитки']; 
+            <h2>Add New Category</h2>
+            <form onSubmit={addCategory}>
+                <input
+                    type="text"
+                    placeholder="Category Name"
+                    value={newCategory.name}
+                    onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Description"
+                    value={newCategory.description}
+                    onChange={(e) => setNewCategory({ ...newCategory, description: e.target.value })}
+                    required
+                />
+                <button type="submit">Add Category</button>
+            </form>
+        </div> 
+    ); 
+}; 
 
-    return (  
-        <>  
-            {categories.map(category => (    
-                <div key={category}>   
-                    <h1 className='text-center'>{category}</h1>   
-                    <div className="menu-blog">  
-                        <Row style={{ margin: '2px 2px' }}>  
-                            {products.filter(product => product.category === category).map(product => (  
-                                <Col key={product.id} xs={6} sm={6} md={4} lg={3}>  
-                                    <Card className='card'>  
-                                        <Card.Img variant="top" src={product.image} alt={product.name} />  
-                                        <Card.Body>
-                                        <div className='price' style={{ marginBottom: 'auto', minHeight: '40px', display: 'flex', alignItems: 'center' }}>
-                                        {product.price} ₽
-                                        </div>
-                                            
-                                            <Card.Title>{product.name}</Card.Title>  
-                                            <div style={{ cursor: 'pointer', color: 'dark', textDecoration: 'underline' }} onClick={() => handleShow(product.name, product.description)}>  
-                                                Описание  
-                                            </div>  
-                                        </Card.Body>   
-                                    </Card>   
-                                </Col>   
-                            ))}   
-                        </Row>   
-                    </div>  
-                </div>    
-            ))} 
-
-            {/* Модальное окно для отображения описания блюда */}    
-            <Modal show={showModal} onHide={handleClose} centered>    
-                <Modal.Header closeButton>    
-                    <Modal.Title>{currentDish.title}</Modal.Title>    
-                </Modal.Header>    
-                <Modal.Body>{currentDish.text}</Modal.Body>    
-                <Modal.Footer>    
-                    <Button variant="secondary" onClick={handleClose}>
-                    Закрыть    
-                    </Button>    
-                </Modal.Footer>    
-            </Modal>    
-        </> 
-    );  
-};
+export default Menu;

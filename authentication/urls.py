@@ -11,12 +11,12 @@ router = DefaultRouter()
 router.register(r'reservations', ReservationViewSet)
 
 
+
 urlpatterns = [
     path('api/home/',HomeView.as_view(), name='home'),
     path('api/logout/', LogoutView.as_view(), name='logout'),
     path('api/bron/', include(router.urls)),
     path('api/register/', UserRegistrationView.as_view(), name='register'),
-    path('api/products/', include(router.urls)),
     path('api/login/', LoginView.as_view(), name='login'),
     path('activate/<str:token>/', ActivateView.as_view(), name='activate'),
     

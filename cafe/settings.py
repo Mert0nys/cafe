@@ -67,7 +67,8 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = [
 
-       "https://mert0nys-cafe-c2cd.twc1.net"
+       "https://mert0nys-cafe-c2cd.twc1.net",
+       "http://127.0.0.1:8000"
 
    ]
 CORS_ALLOW_ALL_ORIGINS = True

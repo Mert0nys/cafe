@@ -16,24 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from rest_framework_simplejwt import views as jwt_views
-from authentication.views import HomeView, ActivateView, MenuView
+from authentication.views import HomeView, ActivateView, MenuView, Menu
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
-from authentication.views import ProductViewSet, CategoryViewSet
+from authentication.views import  CategoryViewSet
 
 router = DefaultRouter()
-router.register(r'products', ProductViewSet, CategoryViewSet)
+router.register(r'products', CategoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('token/',jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/',jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
     path('', include('authentication.urls')),
-    path("",HomeView.as_view(template_name='index.html'), name='home'),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),
-    path('menu/', MenuView.as_view(), name='menu'),
+    path("",HomeView.as_view(),name='home'),
+    path('menu/products/', MenuView.as_view(), name='menu'),
+    path('menu/', Menu.as_view(), name='menu'),
     path('activate/<str:token>/', ActivateView.as_view(), name='activate')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
