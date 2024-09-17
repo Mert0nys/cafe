@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from authentication.views import HomeView, ActivateView, MenuView, Menu
+from authentication.views import HomeView, ActivateView, MenuView, Menu, Registration, Login
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
@@ -27,8 +27,10 @@ router.register(r'products', CategoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', Registration.as_view(), name='register' ),
+    path('login/', Login.as_view(), name='login'),
     path('', include('authentication.urls')),
-    path("",HomeView.as_view(),name='home'),
+    path("",HomeView.as_view() ,name='home'),
     path('menu/products/', MenuView.as_view(), name='menu'),
     path('menu/', Menu.as_view(), name='menu'),
     path('activate/<str:token>/', ActivateView.as_view(), name='activate')

@@ -21,9 +21,13 @@ from django.http import JsonResponse
 import secrets
 from django.http import HttpResponseRedirect
 
+#register(Регистрация)
+class Registration(TemplateView):
+    def get(self, request): 
+        return render(request, 'index.html')
+    
 class UserRegistrationView(generics.CreateAPIView):
        serializer_class = UserRegistrationSerializer
-
        def perform_create(self, serializer):
            user = serializer.save()
            token = secrets.token_urlsafe(32)
@@ -36,22 +40,25 @@ class UserRegistrationView(generics.CreateAPIView):
                fail_silently=False,
            )
 
+#login(Вход)
 class LoginView(generics.GenericAPIView):
     serializer_class = LoginSerializer
     permission_classes = [AllowAny]
-
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
-        
         refresh = RefreshToken.for_user(user)
-        
         return Response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         })
+    
+class Login(TemplateView):
+    def get(self, request): 
+        return render(request, 'index.html')
 
+#Activate(Активация)
 class ActivateView(APIView): 
     def get(self, request, token): 
         try: 
@@ -60,19 +67,17 @@ class ActivateView(APIView):
             activation.user.is_active = True 
             activation.user.save() 
             activation.save()
-            
-            # Редирект на страницу подтверждения
-            return HttpResponseRedirect('http://localhost:8000/')  # Замените на ваш URL React приложения
-            
+            return HttpResponseRedirect('http://localhost:8000/')
         except Activation.DoesNotExist: 
             return Response({"error": "Invalid token!"}, status=status.HTTP_400_BAD_REQUEST)
 
 User = get_user_model()
 
+#Menu(Меню)
 class Menu(TemplateView):
      def get(self, request): 
         return render(request, 'index.html')
-
+     
 class MenuView(APIView):
     def get(self, request):
         menu_items = Product.objects.all()
@@ -95,6 +100,7 @@ class HomeView(TemplateView):
     def get(self, request):
          return render(request, self.template_name)  # Убедитесь, что файл index.html существует в вашем шаблоне
 
+#Phone(Бронирование)
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
