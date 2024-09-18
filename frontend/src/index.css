@@ -17,23 +17,11 @@ code {
     monospace;
 }
 
-.button-bron {
-	background-color:#4a45c7;
-	border-radius:28px;
-	border:1px solid #1009e6;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Times New Roman;
-	font-size:25px;
-	font-weight:bold;
-	padding:16px 31px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #3710d1;
+.slider {
+  display: block;
+  width: 100%;
 }
-.button-bron:hover{
-  background-color:#230fd9;
-}
+
 
 @media (max-width: 689px) {
 .jumimage {
@@ -108,15 +96,15 @@ code {
 
 @media (max-width: 533px) {
   .carousel-item {
-      height: 14rem; 
+      height: 15rem; 
   }
 }
 
-
 @media (min-width: 320px) and (max-width: 347px) {
   .carousel-item {
-      height: 10.5rem; /* Новая высота для экранов меньше 796px */
+      height: 12.5rem; /* Новая высота для экранов меньше 796px */
   }
+
 }
 
 @media (min-width: 347px) and (max-width: 360px) {
@@ -131,11 +119,28 @@ code {
   }
 }
 
-@media (min-width: 797px) and (max-width: 1043px) {
+@media (min-width: 797px) {
   .carousel-item {
-      height: 22rem;
+    height: 29rem;
   }
+}
 
+@media (min-width: 965px) {
+  .carousel-item {
+    height: 34rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .slider {
+    height: 52rem;
+  }
+}
+
+
+
+
+@media (min-width: 600px) and (max-width: 1043px) {
   .card-deserts, .card-hot, .card-dreenk {
     width: 16rem;
   }
@@ -161,14 +166,14 @@ code {
 
 @media (max-width: 575px) {
   .card-deserts, .card-hot, .card-dreenk {
-    width: 17.5rem;
+    width: 16rem;
     margin-bottom: 0.5rem;
   }
 }
 
-@media (max-width: 343px) {
+@media (max-width: 320px) {
   .card-deserts, .card-hot, .card-dreenk {
-    width: 9rem;
+    width: 8rem;
   }
 }
 

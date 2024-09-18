@@ -1,8 +1,5 @@
 import React, {useState} from 'react'
 import { Carousel, Button } from 'react-bootstrap'
-import cafe1 from './images/cafe1.jpg'
-import cafe2 from './images/cafe2.jpg'
-import cafe3 from './images/cafe3.jpg';
 import BookingModal from './Booking';
 
 export default function NaviBar() {
@@ -14,12 +11,12 @@ export default function NaviBar() {
     <Carousel>
         <Carousel.Item className='carousel-item' >
             <img
-                className='d-block w-100'
-                src={cafe1}
+                className='slider'
+                src= "https://sochi.scapp.ru/wp-content/uploads/post/2020/03/promenad_menu_obl-1.jpg"
                 alt='Кафе'
                 
             />
-            <Carousel.Caption>
+            <Carousel.Caption >
             <Button onClick={handleShow} className='button-bron' variant='primary'>
         Забронировать столик
       </Button>
@@ -27,12 +24,12 @@ export default function NaviBar() {
         </Carousel.Item>
         <Carousel.Item className='carousel-item' >
             <img
-                className='d-block w-100'
-                src={cafe2}
+                className='slider'
+                src="https://i0.photo.2gis.com/images/branch/0/30258560091869858_2d85.jpg"
                 alt='Кафе'
             />
             
-            <Carousel.Caption>
+            <Carousel.Caption >
             <Button onClick={handleShow} className='button-bron' variant='primary'>
         Забронировать столик
       </Button>
@@ -40,8 +37,9 @@ export default function NaviBar() {
         </Carousel.Item>
         <Carousel.Item className='carousel-item' >
             <img
-                className='d-block w-100'
-                src={cafe3}
+                
+                className='slider'
+                src="https://ch1ef.ru/upload/iblock/c91/l51u59hh34g832zuyp3ib4et8bv3rynm.jpg"
                 alt='Кафе'
             />
             
