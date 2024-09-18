@@ -34,7 +34,7 @@ class UserRegistrationView(generics.CreateAPIView):
            Activation.objects.create(user=user, token=token)
            send_mail(
                'Activate your account',
-               f'Activate your account by clicking this link: http://localhost:8000/activate/{token}/',
+               f'Activate your account by clicking this link: https://mert0nys-cafe-c2cd.twc1.net/activate/{token}/',
                'from@example.com',
                [user.email],
                fail_silently=False,
@@ -67,7 +67,7 @@ class ActivateView(APIView):
             activation.user.is_active = True 
             activation.user.save() 
             activation.save()
-            return HttpResponseRedirect('http://localhost:8000/')
+            return HttpResponseRedirect('https://mert0nys-cafe-c2cd.twc1.net/')
         except Activation.DoesNotExist: 
             return Response({"error": "Invalid token!"}, status=status.HTTP_400_BAD_REQUEST)
 
