@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from authentication.views import HomeView, ActivateView, MenuView, Menu, Registration, Login
+from authentication.views import HomeView, ActivateView, MenuView, Menu, Registration, Login, About
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
@@ -33,5 +33,6 @@ urlpatterns = [
     path("",HomeView.as_view() ,name='home'),
     path('menu/products/', MenuView.as_view(), name='menu'),
     path('menu/', Menu.as_view(), name='menu'),
+    path('about/', About.as_view(), name='About'),
     path('activate/<str:token>/', ActivateView.as_view(), name='activate')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

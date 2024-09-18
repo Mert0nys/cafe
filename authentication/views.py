@@ -105,7 +105,11 @@ class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
 
-
+#About(О нас)
+class About(TemplateView):
+     template_name = 'index.html'
+     def get(self, request):
+         return render(request, self.template_name)
 
 class CategoryViewSet(viewsets.ModelViewSet):
         queryset = Category.objects.all()
