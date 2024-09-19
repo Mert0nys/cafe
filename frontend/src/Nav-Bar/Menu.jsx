@@ -39,7 +39,7 @@ export const Menu = () => {
                         <Row style={{ margin: '2px 2px' }}>  
                             {products.filter(product => product.category === category).map(product => (  
                                 <Col key={product.id} xs={6} sm={6} md={4} lg={3}>  
-                                    <Card className='card'>  
+                                    <Card className='card' style={{marginBottom: '10px'}}>  
                                         <Card.Img variant="top" src={product.image} alt={product.name} />  
                                         <Card.Body>
                                         <div className='price' style={{ marginBottom: 'auto', minHeight: '40px', display: 'flex', alignItems: 'center' }}>
