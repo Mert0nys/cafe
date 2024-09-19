@@ -127,13 +127,13 @@ code {
 
 @media (min-width: 965px) {
   .carousel-item {
-    height: 34rem;
+    height: 34.5rem;
   }
 }
 
 @media (min-width: 1200px) {
   .slider {
-    height: 52rem;
+    height: 55rem;
   }
 }
 
@@ -170,6 +170,8 @@ code {
     margin-bottom: 0.5rem;
   }
 }
+
+
 
 @media (max-width: 320px) {
   .card-deserts, .card-hot, .card-dreenk {
